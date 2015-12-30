@@ -29,7 +29,6 @@ router.post('/users', function(req, res, next) {
       return console.error('error fetching client from pool', err);
     }
     console.log("connected to database");
-    // var hash = bcrypt.hashSync(req.body.data.attributes.password, 8);
     client.query('INSERT INTO users(username, password) VALUES($1, $2) returning id', [req.body.username, req.body.password], function(err, result) {
       done();
       if(err) {
@@ -115,7 +114,6 @@ router.post('/posts', function(req, res, next) {
       return console.error('error fetching client from pool', err);
     }
     console.log("connected to database");
-    // var hash = bcrypt.hashSync(req.body.data.attributes.password, 8);
     client.query('INSERT INTO posts(user_id, content) VALUES($1, $2) returning id', [req.body.user_id, req.body.content], function(err, result) {
       done();
       if(err) {
